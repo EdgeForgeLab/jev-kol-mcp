@@ -26,12 +26,7 @@ Jev 不负责写搜索结果，也不写邮件。它只回答类型化问题：�
 flowchart LR
   A[search_kols] --> B{本地 SQLite<br/>够且未过期?}
   B -->|是| Z[返回缓存]
-  B -->|否| C{共享库<br/>已开启?}
-  C -->|是| D[拉取共享数据]
-  C -->|否| E[Apify]
-  D --> F{现在够了?}
-  F -->|是| Z
-  F -->|否| E
+  B -->|否| E[Apify]
   E --> G[Jev 打大类]
   G --> H[写入 ~/.jev-kol-mcp]
   H --> Z
@@ -109,9 +104,6 @@ npm run build
 | `JEV_API_KEY` | 大类、契合度打分和邮件草稿需要 | — |
 | `JEV_MODEL` | 否 | `jev-latest` |
 | `FETCH_LIMIT` | 否 | `12` |
-| `ENABLE_COMMUNITY_POOL` | 否 | 关闭，除非是 `1` `true` `yes` `on` |
-| `SAAS_API_BASE_URL` | 仅开启共享库时 | — |
-| `SAAS_API_KEY` | 仅开启共享库时 | — |
 
 - Apify Token：<https://console.apify.com/account/integrations>
 - Jev 密钥：向 TypeSafe 申请，请求头为 `Authorization: Bearer`
@@ -147,10 +139,6 @@ SQLite 文件在 `~/.jev-kol-mcp/kols.sqlite`。删掉它之后，下次搜索�
 ```text
 用 jev-kol 的 search_kols 在 TikTok 上搜索美妆达人，粉丝 1 万到 20 万，返回 5 条。列出账号、粉丝数、地区、大类标签和简介。不要打分。
 ```
-
-## 共享库
-
-默认关闭。开启后，本地缓存不够时会先请求 `GET {SAAS_API_BASE_URL}/v1/community-pool/kols`，然后再考虑 Apify。只有刚刚从 Apify 抓到的账号才会 `POST` 到同一路径。共享库出错不会让搜索失败。本仓库不包含共享库服务端，只实现这套请求约定。
 
 ## 许可证
 

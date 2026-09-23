@@ -26,12 +26,7 @@ Jev does not write the search results or the emails. It answers typed questions:
 flowchart LR
   A[search_kols] --> B{Local SQLite<br/>enough and fresh?}
   B -->|yes| Z[Return cached rows]
-  B -->|no| C{Community pool<br/>enabled?}
-  C -->|yes| D[Pull shared rows]
-  C -->|no| E[Apify]
-  D --> F{Enough now?}
-  F -->|yes| Z
-  F -->|no| E
+  B -->|no| E[Apify]
   E --> G[Jev niche label]
   G --> H[Save to ~/.jev-kol-mcp]
   H --> Z
@@ -109,9 +104,6 @@ Missing keys return setup instructions. The process stays up. Placeholder values
 | `JEV_API_KEY` | for niche labels, fit scores, and email drafts | — |
 | `JEV_MODEL` | no | `jev-latest` |
 | `FETCH_LIMIT` | no | `12` |
-| `ENABLE_COMMUNITY_POOL` | no | off, unless `1` `true` `yes` `on` |
-| `SAAS_API_BASE_URL` | only when the pool is on | — |
-| `SAAS_API_KEY` | only when the pool is on | — |
 
 - Apify token: <https://console.apify.com/account/integrations>
 - Jev key: from TypeSafe, sent as `Authorization: Bearer`
@@ -147,10 +139,6 @@ Try it:
 ```text
 Use jev-kol search_kols on TikTok for skincare creators with 10,000 to 200,000 followers. Return 5. List handle, followers, location, primary niche, and bio. Do not score them.
 ```
-
-## Community pool
-
-Off by default. When it is on, a thin local cache is filled from `GET {SAAS_API_BASE_URL}/v1/community-pool/kols` before Apify. Only profiles just scraped from Apify are uploaded with `POST` to that path. Pool errors never fail the search. This repository does not ship the pool server. It only speaks that contract.
 
 ## License
 
