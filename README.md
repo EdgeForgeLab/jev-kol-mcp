@@ -36,6 +36,14 @@ Install jev-kol-mcp for me.
 
 The process speaks MCP over stdio. It is not an HTTP server, and it does not print a prompt. Logs go to stderr. Leave stdout for the MCP protocol.
 
+## Example
+
+Ask for creators in a follower range. The agent searches, labels each niche, and scores the campaign.
+
+![Ask for puzzle-game creators between 10k and 20k followers](https://github.com/EdgeForgeLab/jev-kol-mcp/raw/main/docs/question.png)
+
+![TikTok results with niche labels and Jev fit scores](https://github.com/EdgeForgeLab/jev-kol-mcp/raw/main/docs/answer.png)
+
 ## What you can ask
 
 | Tool | What it does | Needs |

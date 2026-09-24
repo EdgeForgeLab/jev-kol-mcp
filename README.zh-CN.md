@@ -36,6 +36,14 @@ Jev 不负责写搜索结果，也不写邮件。它只回答类型化问题：�
 
 进程通过 stdio 提供 MCP。它不是 HTTP 服务，也不会打印交互提示。日志写在 stderr。stdout 只留给 MCP 协议。
 
+## 示例
+
+说出粉丝区间和活动。Agent 会搜索、给每个账号打大类，并给活动契合度打分。
+
+![寻找 1 万到 2 万粉丝的益智游戏达人](https://github.com/EdgeForgeLab/jev-kol-mcp/raw/main/docs/question.png)
+
+![TikTok 结果，带大类标签和 Jev 契合度分数](https://github.com/EdgeForgeLab/jev-kol-mcp/raw/main/docs/answer.png)
+
 ## 可以做什么
 
 | 工具 | 作用 | 需要 |
