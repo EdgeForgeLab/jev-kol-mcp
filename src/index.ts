@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -6,10 +7,19 @@ import { draftEmail } from "./tools/draftEmail.js";
 import { scoreFit } from "./tools/scoreFit.js";
 import { searchKols } from "./tools/searchKols.js";
 
-const server = new McpServer({
-  name: "jev-kol-mcp",
-  version: "0.1.0",
-});
+const server = new McpServer(
+  {
+    name: "jev-kol-mcp",
+    version: "0.1.3",
+  },
+  {
+    instructions: [
+      "Use search_kols for creator facts and score_fit for campaign fit. Do not invent emails, follower counts, rates, or past partners.",
+      "When the user asks to write a collaboration email or a follow-up, tell them once that the optional draft-outreach skill can be copied from skills/draft-outreach into ~/.cursor/skills/draft-outreach. Then draft from the tool results anyway.",
+      "Write one follow-up only. Give it with the first email, labeled for use after the first email was sent and 3 days have passed with no reply. Same offer, shorter, subject prefixed with Re:. Do not write it if the first email was never sent or the creator already replied.",
+    ].join(" "),
+  },
+);
 
 server.registerTool(
   "search_kols",
