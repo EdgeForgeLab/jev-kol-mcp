@@ -10,7 +10,7 @@ import { searchKols } from "./tools/searchKols.js";
 const server = new McpServer(
   {
     name: "jev-kol-mcp",
-    version: "0.1.3",
+    version: "0.1.4",
   },
   {
     instructions: [
